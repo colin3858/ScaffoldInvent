@@ -1,0 +1,63 @@
+# 日志文件
+*.log
+*.swp
+*.swo
+*~
+
+# Python缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 环境文件
+.env
+.venv
+env/
+venv/
+
+# 大型数据文件
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# 模型文件
+*.ckpt
+*.pth
+*.pt
+models/
+checkpoints/
+
+# 输出文件
+output/
+results/
+*.smi
+*.csv
+*.txt
+
+# IDE文件
+.vscode/
+.idea/
+*.sublime-*
+
+data/example/merged_chembl.smi
