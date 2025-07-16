@@ -184,18 +184,6 @@ def scaffold_hop(smiles, core_smiles, new_core_smiles):
     id_h_combinations = itertools.permutations(id_h, len(side_mols))
     id_h_combinations_list = list(id_h_combinations)
 
-    # side_mols_dict = {}
-    # side_mols_connect_atom_dict = {}
-    # for m in side_mols:
-    #     side_id = int(Chem.MolToSmiles(m).split('*')[0][1:])
-    #     side_mols_dict[side_id] = m
-
-    #     for atom in m.GetAtoms():
-    #         if (atom.GetAtomicNum() == 0):
-    #             side_mols_connect_atom_dict[side_id] = atom.GetNeighbors()[0].GetIntProp('id_o')
-
-
-    # 在新母核上依次装上R-group
     new_mol = []
     rmsd = []
     for list_tmp in id_h_combinations_list:
@@ -215,40 +203,6 @@ def scaffold_hop(smiles, core_smiles, new_core_smiles):
 
     return Chem.MolToSmiles(new_mol[sim_max_id])
 
-def main():
-    import os
-    new_directory = "/ScaffoldInvent/"
-    os.chdir(new_directory)
-    compound = "N#C[C@@H]1CCCC[C@@H]1n1cc(C(N)=O)c(Nc2ccc(F)nc2)n1"
-    core = "NC(=O)c1cn([H])nc1N[H]"
-    add_side = []
-    scaff = pd.read_csv("D:\Python\Project_VAE\data\JAK1\\test_sample_JAK1.csv")
-    scaff_list = scaff['SMILES'].tolist()
-#    scaff_list = ['c1cccnc1']
-    for i in range(len(scaff_list)):
-        print(i)
-        sca_mol = Chem.MolFromSmiles(scaff_list[i])
-        if sca_mol is None:
-            add_side.append(scaff_list[i])
-        else:
-            try:
-                new = scaffold_hop(compound, core, scaff_list[i])
-                add_side.append(new)
-            except:
-                add_side.append(scaff_list[i])
-            
 
-    #将结果保存到csv文件中
-    print("add side end")
-    df_smiles = pd.DataFrame()
-    df_smiles['SMILES'] = add_side
-    print(add_side)
-    df_smiles.to_csv("D:\Python\Project_VAE\data\JAK1\\test_sample_JAK1_side.csv", index=None)
-
-if __name__ == "__main__":
-    import os
-    new_directory = "/ScaffoldInvent/"
-    os.chdir(new_directory)
-    main()
 
 

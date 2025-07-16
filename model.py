@@ -188,19 +188,7 @@ class DMPN(nn.Module):
             self.q_logvar = nn.Linear(self.d_hid*2, self.d_z)
             self.decoder_lat = nn.Linear(self.d_z, self.d_hid*2)
 
-    # def forward(self, mol_batch, sca_batch, target):
-    #     space_side, space_sca = self.forward_encoder( mol_batch,sca_batch)
-    #     mu, logvar = self.q_mu(space_sca), self.q_logvar(space_sca)
-    #     eps = torch.randn_like(mu)
-    #     z = mu + (logvar / 2).exp() * eps
-    #     kl_loss = 0.5 * (logvar.exp() + mu ** 2 - 1 - logvar).sum(1).mean()
-
-    #     sca_h = self.decoder_lat(z)
-    #     gru_h0 = torch.cat([sca_h,space_side],1)
-    #     gru_h0 = torch.unsqueeze(gru_h0,0).repeat([3,1,1]).type(torch.float32)
-
-    #     recon_loss = self. forward_decoder(gru_h0,target)
-    #     return kl_loss ,recon_loss
+ 
     def forward(self, mol_batch, sca_batch, target):
         # 获取编码器的输出
         space_side, space_sca = self.forward_encoder(mol_batch, sca_batch)
@@ -348,42 +336,6 @@ class DMPN(nn.Module):
 
         return create_var(torch.randn(n_batch, self.d_z))
 
-    # def sample(self,n_batch,mol,sca, max_length=140):
-    #     with torch.no_grad():
-    #         space_side, space_sca = self.forward_encoder(mol, sca)
-    #         z = self.sample_z_prior(n_batch)
-    #         sca_h = self.decoder_lat(z)
-    #         space_side = space_side.repeat(n_batch,1)
-    #         gru_h0 = torch.cat([sca_h,space_side], 1)
-
-
-    #         gru_h0 = torch.unsqueeze(gru_h0, 0).repeat([3, 1, 1]).type(torch.float32)
-    #         h = gru_h0
-
-    #         start_token = create_var(torch.zeros(n_batch).long())
-    #         start_token[:] = self.voc.vocab['GO']
-    #         x = start_token
-    #         sequences = []
-    #         log_probs = create_var(torch.zeros(n_batch))
-    #         finished = torch.zeros(n_batch).byte()
-    #         if torch.cuda.is_available():
-    #             finished = finished.cuda()
-
-    #         for step in range(max_length):
-    #             logits, h = self.rnn(x, h)
-    #             prob = F.softmax(logits, dim=1)
-    #             log_prob = F.log_softmax(logits, dim=1)
-    #             x = torch.multinomial(prob, num_samples=1).view(-1)
-    #             log_probs += self.NLLLoss(log_prob, x)
-    #             sequences.append(x.view(-1, 1))
-
-    #             x = create_var(x.data)
-    #             EOS_sampled = (x == self.voc.vocab['EOS']).data
-    #             finished = torch.ge(finished + EOS_sampled, 1)
-    #             if torch.prod(finished) == 1: break
-
-    #         sequences = torch.cat(sequences, 1)
-    #         return sequences.data
     def sample(self,n_batch,mol,sca, max_length=140):
         with torch.no_grad():
             space_side, space_sca = self.forward_encoder(mol, sca)

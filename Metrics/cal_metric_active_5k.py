@@ -111,21 +111,7 @@ def sca_sucess(gen,mol,sca):
         return len(filter)/len(gen)
     else:
         return 0
-# def cal_qed(gen):
-#     qed=0
-#     for i in range(len(gen)):
-#         print(gen[i])
-#         mol = Chem.MolFromSmiles(gen[i])
-#         qed+=QED(mol)
-#     score=qed/len(gen)
-#     return score
-# def cal_SA(gen):
-#     sa=0
-#     for i in range(len(gen)):
-#         mol = Chem.MolFromSmiles(gen[i])
-#         sa+=SA(mol)
-#     score=sa/len(gen)
-#     return score
+
 def cal_qed(gen):
     total_qed = 0
     valid_count = 0

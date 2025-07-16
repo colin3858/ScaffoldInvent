@@ -654,24 +654,3 @@ def download_fasta_from_uniprot(protein_name):
     else:
         print(f"Error: Unable to download FASTA sequence for protein '{protein_name}'.")
         return None
-
-if __name__ == "__main__":
-    new_directory = "/ScaffoldInvent/"
-    os.chdir(new_directory)
-    # seqs = ["CC(C)(C)c1ccc2occ(CC(=O)Nc3ccccc3F)c2c1","C[C@@H]1CC(Nc2cncc(-c3nncn3C)c2)C[C@@H](C)C1","COc1ccc(N2CCn3c2nn(CC(N)=O)c(=O)c3=O)cc1"]
-    # lik = [2.1,3.2,1]
-    # out = ext_sca(seqs,lik)
-    # kl_annealer = KLAnnealer(10)
-    # kl_weight = kl_annealer(10)
-    # data_path = "D:\Python\ProjectOne\data\data.txt"
-    # data = np.array([ 7.,  7.,  7.,  1.,  9.,  7.,  1.,  6., 10.,  2., 12.,  4., 15.,
-    #    12., 13., 12.,  4.,  7.,  4.,  7.,  7.,  4.,  2.,  7.,  1.,  6.,
-    #    10.,  2.,  9.,  4.,  7.,  7., 10.,  7.,  7.,  4., 16., 16., 16.])
-    # result = one_hot(data,17)
-    # print(result)
-    # smiles_list , scas_list = canonicalize_smiles_from_file(data_path)
-    # print(smiles_list)
-    # print(scas_list)
-    smiles = "O=[P@]1(c2cccc(C(F)(F)F)c2)O[C@H](COCc2ccccc2)[C@@H](OCc2ccccc2)[C@H](OCc2ccccc2)[C@@H]1O"
-    sca = "O=[PH]1CC(OCc2ccccc2)CCO1"
-    construct_vocabulary('PH.smi','./data/Voc_chembl_all_tmp')

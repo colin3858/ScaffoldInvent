@@ -143,21 +143,7 @@ def mmps_cutting_from_csv(csv_file, output_file, pattern="[#6+0;!$(*=,#[!#6])]!@
     fmqs = list(set(fmqs))
     result_df = pd.DataFrame(fmqs)
     result_df.to_csv(output_file, index=False)
-    # for idx, row in data.iterrows():
-    #     smi = row['SMILES']
-    #     fmqs=Parallel(n_jobs=2)(delayed(mmps_cutting)(i) for i in smi)
-    #     fmqs = [j for i in fmqs for j in i if j]
-    #     fmqs = list(set(fmqs))
-    #     # fmqs = mmps_cutting(smi, pattern=pattern, dummy=dummy, filtering=filtering)
-    #     if fmqs:  # Check if FMQs is not empty
-    #         for fmq in fmqs:
-    #             result_row = row.copy()  # Make a copy of the row
-    #             result_row['FMQs'] = fmq  # Assign FMQ to 'FMQs' column
-    #             results.append(result_row)  # Append the modified row
-        
-    # # Write results to output file
-    # result_df = pd.DataFrame(results)
-    # result_df.to_csv(output_file, index=False)
+  
 
 # Example usage:
 csv_file = '/home/lianhy/ScaffoldInvent-master/data/mmp_test.csv'

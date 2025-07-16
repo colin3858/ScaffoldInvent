@@ -109,21 +109,7 @@ def sca_sucess(gen,mol,sca):
         return len(filter)/len(gen)
     else:
         return 0
-# def cal_qed(gen):
-#     qed=0
-#     for i in range(len(gen)):
-#         print(gen[i])
-#         mol = Chem.MolFromSmiles(gen[i])
-#         qed+=QED(mol)
-#     score=qed/len(gen)
-#     return score
-# def cal_SA(gen):
-#     sa=0
-#     for i in range(len(gen)):
-#         mol = Chem.MolFromSmiles(gen[i])
-#         sa+=SA(mol)
-#     score=sa/len(gen)
-#     return score
+
 def cal_qed(gen):
     total_qed = 0
     valid_count = 0
@@ -182,14 +168,9 @@ def get_all_metrics(gen, n_jobs=1,
             pool = 1
     metrics['Validity'] = fraction_valid(gen, n_jobs=pool)
     gen_valid = remove_invalid(gen, canonize=True)
-    # if len(gen_valid) == 0:
-    #     return {1: 0}
-    #合并两个集合
-    # train = train + fine_tune
+
     train = train
-    # metrics['Uniqueness@1k'] = fraction_unique(gen, k=1000, n_jobs=pool)
-    # metrics['Uniqueness@5k'] = fraction_unique(gen, k=5000, n_jobs=pool)
-    # metrics['Diversity_sca'] = scaffold_diversity(gen_valid, n_jobs=pool)
+
 
     if train is not None:
         metrics['Novelty_sca'] = scaffold_novelty(gen_valid, train_scaffolds, n_jobs=pool)

@@ -18,11 +18,9 @@ from functools import partial
 import numpy as np
 # Argument parser
 parser = argparse.ArgumentParser(description='Neural message passing and rnn')
-# parser.add_argument('--datasetPath', default='./data/lianhy/example_1.smi', help='dataset path')
+
 parser.add_argument('--datasetPath', default='./data/parp1/parp1_new.smi', help='dataset path')
-# /ScaffoldInvent/data/Voc_merged_chembl_all
-# /ScaffoldInvent/data/Voc_chembl_all
-# /ScaffoldInvent/model/model_pretrain_attention.ckpt
+
 parser.add_argument('--vocPath', default='./data/Voc_merged_chembl_all', help='voc path')
 parser.add_argument('--modelPath', default='./models/parp1.ckpt', help='model path')
 parser.add_argument('--save_dir', default='./data/parp1/parp1_sample_5k_9.csv', help='save sample path')
@@ -84,20 +82,7 @@ class Logger(object):
     def flush(self):
         pass
 
-# def scaffold_hop_one(seqs, mol, sca,  voc):
-#     totalsmiles_one = []
-#     for i, seq in enumerate(seqs):
-#         smile = voc.decode(seq)
-#         sca_mol = Chem.MolFromSmiles(smile)
-#         if sca_mol is None:
-#             totalsmiles_one.append(smile)
-#         else:
-#             try:
-#                 new = scaffold_hop(mol[0], sca[0], smile)
-#                 totalsmiles_one.append(new)
-#             except:
-#                 totalsmiles_one.append(smile)
-#     return totalsmiles_one
+
 def scaffold_hop_one(seqs, mol, sca,  voc):
     totalsmiles_one = []
     for i, seq in enumerate(seqs):
@@ -119,10 +104,9 @@ def main(args):
 
     voc = Vocabulary(init_from_file= args.vocPath)
 
-    #sys.stdout = Logger(sys.stdout)
-    # define model
+   
     dmpn = DMPN(args.hidden_size, args.depth, args.out, args.atten_size, args.r, args.d_hid, args.d_z, voc)
-    #dmpn = DMPN(args.hidden_size, args.depth, args.out, args.atten_size, args.r, args.d_hid, args.d_z, voc, protein_dict, ver=True)
+
     dmpn = dmpn.cuda()
     if torch.cuda.is_available():
         dmpn.load_state_dict(torch.load(args.modelPath))
@@ -147,24 +131,20 @@ def main(args):
 
         for epoch in range(args.epochs):
             seqs = dmpn.sample(args.batch_size,mol,sca)
-            #seqs,_ = dmpn.sample_ver(args.batch_size)
+
             seq_numpy = seqs.cpu().numpy()
             splitted_tensors = np.array_split(seq_numpy, 2, 0)
             scaffold_hop_one_mol = partial(scaffold_hop_one, mol=mol, sca=sca, voc=voc)
-            # result=scaffold_hop_one_mol(seq_numpy)
-            # print(result)
+     
             result = mapper(2)(scaffold_hop_one_mol,splitted_tensors)
             for i in range(len(result)):
-                # print(result[i])
-                # totalsmiles.append(result[i])
+              
                 totalsmiles += result[i]
-            #totalsmiles = totalsmiles + scaffold_hop_one(mol, sca, seqs, voc)
+     
 
             molecules_total = len(totalsmiles)
 
-            # print("Epoch {}: {} ({:>4.1f}%) molecules were valid. [{} / {}]".format(epoch + 1, valid,
-            #                                                                      100 * valid / len(seqs),
-            #                                                                      filter_total, args.molecule_num))
+           
             all_seq += len(seqs)
             if molecules_total > args.molecule_num:
                break

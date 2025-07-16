@@ -109,16 +109,5 @@ def write_smiles_to_file(smiles_list, fname):
         for smiles in smiles_list:
             f.write(smiles + "\n")
 
-if __name__ == "__main__":
-    import os
-    new_directory = "/home/lianhy/ScaffoldInvent-master/"
-    os.chdir(new_directory)
-    data_path = "D:\Python\ProjectOne\data\data.txt"
-    voc_chars , max_len = construct_vocabulary(data_path)
-    voc = Vocabulary(init_from_file='data/Voc',max_length=max_len)
-    print(voc_chars)
-    print(max_len)
-    moldata = MolData(data_path,voc)
-    test = moldata.__getitem__(0)
-    print(test)
+
 

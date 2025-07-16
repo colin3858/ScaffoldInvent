@@ -18,12 +18,10 @@ from functools import partial
 import numpy as np
 # Argument parser
 parser = argparse.ArgumentParser(description='Neural message passing and rnn')
-# parser.add_argument('--datasetPath', default='./data/lianhy/example_1.smi', help='dataset path')
+
 
 parser.add_argument('--datasetPath', default='/ScaffoldInvent/data/lrrk2/lrrk2_candidates.smi', help='dataset path')
-# /ScaffoldInvent/data/Voc_merged_chembl_all
-# /ScaffoldInvent/data/Voc_chembl_all  
-# /ScaffoldInvent/model/model_pretrain_attention.ckpt
+
 parser.add_argument('--vocPath', default='./data/Voc_merged_chembl_all', help='voc path')
 parser.add_argument('--modelPath', default='./model/merged_chembl_pretrain_attention.ckpt', help='model path')
 parser.add_argument('--save_dir', default='./data/lianhy/sample_pdb_tmp.csv', help='save sample path')
@@ -90,14 +88,6 @@ def scaffold_hop_one(seqs, mol, sca,  voc):
     for i, seq in enumerate(seqs):
         smile = voc.decode(seq)
         sca_mol = Chem.MolFromSmiles(smile)
-        # if sca_mol is None:
-        #     totalsmiles_one.append(smile)
-        # else:
-        #     try:
-        #         new = scaffold_hop(mol[0], sca[0], smile)
-        #         totalsmiles_one.append(new)
-        #     except:
-        #         totalsmiles_one.append(smile)
         if sca_mol is not None:
             try:
                 new = scaffold_hop(mol[0], sca[0], smile)
@@ -139,24 +129,20 @@ def main(args):
 
         for epoch in range(args.epochs):
             seqs = dmpn.sample(args.batch_size,mol,sca)
-            #seqs,_ = dmpn.sample_ver(args.batch_size)
+      
             seq_numpy = seqs.cpu().numpy()
             splitted_tensors = np.array_split(seq_numpy, 2, 0)
             scaffold_hop_one_mol = partial(scaffold_hop_one, mol=mol, sca=sca, voc=voc)
-            # result=scaffold_hop_one_mol(seq_numpy)
-            # print(result)
+           
             result = mapper(2)(scaffold_hop_one_mol,splitted_tensors)
             for i in range(len(result)):
-                # print(result[i])
-                # totalsmiles.append(result[i])
+             
                 totalsmiles += result[i]
-            #totalsmiles = totalsmiles + scaffold_hop_one(mol, sca, seqs, voc)
+
 
             molecules_total = len(totalsmiles)
 
-            # print("Epoch {}: {} ({:>4.1f}%) molecules were valid. [{} / {}]".format(epoch + 1, valid,
-            #                                                                      100 * valid / len(seqs),
-            #                                                                      filter_total, args.molecule_num))
+          
             all_seq += len(seqs)
             if molecules_total > args.molecule_num:
                break
