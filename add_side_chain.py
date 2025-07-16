@@ -217,7 +217,7 @@ def scaffold_hop(smiles, core_smiles, new_core_smiles):
 
 def main():
     import os
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     compound = "N#C[C@@H]1CCCC[C@@H]1n1cc(C(N)=O)c(Nc2ccc(F)nc2)n1"
     core = "NC(=O)c1cn([H])nc1N[H]"
@@ -231,7 +231,6 @@ def main():
         if sca_mol is None:
             add_side.append(scaff_list[i])
         else:
-            new = scaffold_hop(compound, core, scaff_list[i])
             try:
                 new = scaffold_hop(compound, core, scaff_list[i])
                 add_side.append(new)
@@ -246,9 +245,10 @@ def main():
     print(add_side)
     df_smiles.to_csv("D:\Python\Project_VAE\data\JAK1\\test_sample_JAK1_side.csv", index=None)
 
-
 if __name__ == "__main__":
     import os
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     main()
+
+

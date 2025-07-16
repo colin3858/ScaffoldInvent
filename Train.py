@@ -44,7 +44,7 @@ parser.add_argument('--early_stop', type=int, default=10, metavar='N', help='ear
 args = parser.parse_args()
 print(args)
 def main(args):
-    # sys.path.append("/home/lianhy/ScaffoldGVAE-master")
+    # sys.path.append("/ScaffoldInvent")
     if os.path.isfile(args.voc_dir):
         voc = Vocabulary(init_from_file=args.voc_dir)
     else:
@@ -145,6 +145,6 @@ def main(args):
     plt.show()
 
 if __name__ == "__main__":
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     main(args)

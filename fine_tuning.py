@@ -17,7 +17,7 @@ import pandas as pd
 
 # Argument parser
 parser = argparse.ArgumentParser(description='Neural message passing and rnn')
-parser.add_argument('--datasetPath', default='/home/lianhy/ScaffoldGVAE-master/data/egfr/EGFR_sca.smi', help='dataset path')
+parser.add_argument('--datasetPath', default='/ScaffoldInvent/data/egfr/EGFR_sca.smi', help='dataset path')
 parser.add_argument('--save_dir', default='./models/EGFR.ckpt', help='save model path')
 parser.add_argument('--voc_dir', default='./data/Voc_merged_chembl_all', help='voc path')
 parser.add_argument('--loss_dir', default='./data/EGFR/batch_JAK1.png', help='loss path')
@@ -122,6 +122,6 @@ def main(args):
     plt.show()
 
 if __name__ == "__main__":
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     main(args)

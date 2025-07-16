@@ -1,6 +1,6 @@
 from multiprocessing import Pool
 import sys
-sys.path.append("/home/lianhy/ScaffoldGVAE-master")
+sys.path.append("/ScaffoldInvent")
 from utils import mapper, valid_smiles, read_smiles_csv, get_mol, canonic_smiles, compute_scaffolds, fingerprints, calc_self_tanimoto, side_no_sca_change, mol_passes_filters
 import argparse
 import pandas as pd
@@ -328,20 +328,20 @@ def main(args):
 
 def get_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--train_path',default="/home/lianhy/ScaffoldGVAE-master/data/merged_chembl.csv",type=str, required=False,help='Path to train molecules csv')
-    parser.add_argument('--ref_smiles', default="/home/lianhy/ScaffoldGVAE-master/data/cdk2/cdk2_candidates.smi", type=str,
+    parser.add_argument('--train_path',default="/ScaffoldInvent/data/merged_chembl.csv",type=str, required=False,help='Path to train molecules csv')
+    parser.add_argument('--ref_smiles', default="/ScaffoldInvent/data/cdk2/cdk2_candidates.smi", type=str,
                         required=False, help='Path to train molecules csv')
     parser.add_argument('--fine_tune_path', default=None, type=str, required=False,help='Path to fine molecules csv')
-    parser.add_argument('--gen_path',default='/home/lianhy/ScaffoldGVAE-master/data/cdk2/cdk2_test_sample.csv',type=str, required=False,help='Path to generated molecules csv')
-    parser.add_argument('--output',default='/home/lianhy/ScaffoldGVAE-master/data/cdk2/cdk2_metrics_test.csv',type=str, required=False,help='Path to save results csv')
+    parser.add_argument('--gen_path',default='/ScaffoldInvent/data/cdk2/cdk2_test_sample.csv',type=str, required=False,help='Path to generated molecules csv')
+    parser.add_argument('--output',default='/ScaffoldInvent/data/cdk2/cdk2_metrics_test.csv',type=str, required=False,help='Path to save results csv')
     parser.add_argument('--print_metrics', action='store_true', default=True,help="Print results of metrics or not? [Default: False]")
     parser.add_argument('--n_jobs',type=int, default=20,help='Number of processes to run metrics')
     parser.add_argument('--device',type=str, default='cuda:0',help='GPU device id (`cpu` or `cuda:n`)')
-    parser.add_argument('--valid_gen_path',default='/home/lianhy/ScaffoldGVAE-master/data/JAK1/JAK1_valid_sample.csv',type=str, required=False,help='Path to generated molecules csv')
+    parser.add_argument('--valid_gen_path',default='/ScaffoldInvent/data/JAK1/JAK1_valid_sample.csv',type=str, required=False,help='Path to generated molecules csv')
     return parser
 
 if __name__ == '__main__':
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     parser = get_parser()
     args = parser.parse_args()

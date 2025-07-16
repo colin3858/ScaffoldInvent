@@ -95,10 +95,10 @@ def main(args):
 
 if __name__ == "__main__":
     # Argument parser
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     parser = argparse.ArgumentParser(description='Neural message passing and rnn')
-    parser.add_argument('--data', default='/home/lianhy/ScaffoldGVAE-master/data/egfr/egfr.smi', help='dataset path')
-    parser.add_argument('--save_dir', default='/home/lianhy/ScaffoldGVAE-master/data/egfr/EGFR_sca.smi', help='save model path')
+    parser.add_argument('--data', default='/ScaffoldInvent/data/egfr/egfr.smi', help='dataset path')
+    parser.add_argument('--save_dir', default='/ScaffoldInvent/data/egfr/EGFR_sca.smi', help='save model path')
     args = parser.parse_args()
     main(args)

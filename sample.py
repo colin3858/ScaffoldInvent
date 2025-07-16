@@ -20,10 +20,10 @@ import numpy as np
 parser = argparse.ArgumentParser(description='Neural message passing and rnn')
 # parser.add_argument('--datasetPath', default='./data/lianhy/example_1.smi', help='dataset path')
 
-parser.add_argument('--datasetPath', default='/home/lianhy/ScaffoldGVAE-master/data/lrrk2/lrrk2_candidates.smi', help='dataset path')
-# /home/lianhy/ScaffoldGVAE-master/data/Voc_merged_chembl_all
-# /home/lianhy/ScaffoldGVAE-master/data/Voc_chembl_all
-# /home/lianhy/ScaffoldGVAE-master/model/model_pretrain_attention.ckpt
+parser.add_argument('--datasetPath', default='/ScaffoldInvent/data/lrrk2/lrrk2_candidates.smi', help='dataset path')
+# /ScaffoldInvent/data/Voc_merged_chembl_all
+# /ScaffoldInvent/data/Voc_chembl_all  
+# /ScaffoldInvent/model/model_pretrain_attention.ckpt
 parser.add_argument('--vocPath', default='./data/Voc_merged_chembl_all', help='voc path')
 parser.add_argument('--modelPath', default='./model/merged_chembl_pretrain_attention.ckpt', help='model path')
 parser.add_argument('--save_dir', default='./data/lianhy/sample_pdb_tmp.csv', help='save sample path')
@@ -173,6 +173,6 @@ def main(args):
     # return molecules_total
 
 if __name__ == "__main__":
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     main(args)

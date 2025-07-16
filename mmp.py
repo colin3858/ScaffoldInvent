@@ -160,8 +160,8 @@ def mmps_cutting_from_csv(csv_file, output_file, pattern="[#6+0;!$(*=,#[!#6])]!@
     # result_df.to_csv(output_file, index=False)
 
 # Example usage:
-csv_file = '/home/lianhy/ScaffoldGVAE-master/data/mmp_test.csv'
-output_file = '/home/lianhy/ScaffoldGVAE-master/data/chembl_brics_test.csv'
+csv_file = '/home/lianhy/ScaffoldInvent-master/data/mmp_test.csv'
+output_file = '/home/lianhy/ScaffoldInvent-master/data/chembl_brics_test.csv'
 mmps_cutting_from_csv(csv_file, output_file)
 
 

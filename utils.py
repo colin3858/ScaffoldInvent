@@ -96,7 +96,7 @@ def fingerprints(smiles_mols_array, n_jobs=1, already_unique=True, **kwargs):
         return fps[inv_index]
     return fps
 
-new_directory = "/gpfs/hpc/home/caodongsh/zhouyiling/scaffoldgvae"
+new_directory = "/ScaffoldInvent"
 os.chdir(new_directory)
 _base_dir = "./Metrics/"
 _mcf = pd.read_csv(os.path.join(_base_dir, 'mcf.csv'))
@@ -656,7 +656,7 @@ def download_fasta_from_uniprot(protein_name):
         return None
 
 if __name__ == "__main__":
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     # seqs = ["CC(C)(C)c1ccc2occ(CC(=O)Nc3ccccc3F)c2c1","C[C@@H]1CC(Nc2cncc(-c3nncn3C)c2)C[C@@H](C)C1","COc1ccc(N2CCn3c2nn(CC(N)=O)c(=O)c3=O)cc1"]
     # lik = [2.1,3.2,1]

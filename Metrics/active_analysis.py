@@ -2,7 +2,7 @@ import pandas as pd
 import argparse
 import os
 import sys
-sys.path.append("/home/lianhy/ScaffoldGVAE-master")
+sys.path.append("/ScaffoldInvent")
 from utils import side_no_sca_change,valid_smiles
 import statistics
 
@@ -88,15 +88,15 @@ def main(args):
 
 def get_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--ref_score',default='/home/lianhy/ScaffoldGVAE-master/data/JAK1/JAK_ref.csv',type=str, required=False,help='Path to train molecules csv')
-    parser.add_argument('--sample_score', default="/home/lianhy/ScaffoldGVAE-master/data/JAK1/JAK_20_valid_predictions.csv", type=str,
+    parser.add_argument('--ref_score',default='/ScaffoldInvent/data/JAK1/JAK_ref.csv',type=str, required=False,help='Path to train molecules csv')
+    parser.add_argument('--sample_score', default="/ScaffoldInvent/data/JAK1/JAK_20_valid_predictions.csv", type=str,
                         required=False, help='Path to train molecules csv')
-    parser.add_argument('--ref_smiles', default="/home/lianhy/ScaffoldGVAE-master/data/JAK1/JAK_20.smi", type=str,
+    parser.add_argument('--ref_smiles', default="/ScaffoldInvent/data/JAK1/JAK_20.smi", type=str,
                         required=False, help='Path to train molecules csv')
     return parser
 
 if __name__ == '__main__':
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     parser = get_parser()
     args = parser.parse_args()

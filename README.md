@@ -75,7 +75,7 @@ ScaffoldInvent is a deep learning project for molecular generation and scaffold-
 ## Notes
 
 - Recommended to run in a Linux environment; GPU acceleration (CUDA) is suggested.
-- Some default paths are set as `/home/lianhy/ScaffoldGVAE-master/`, please update them to your own data/model paths as needed.
+- Some default paths are set as `/ScaffoldInvent/`, please update them to your own data/model paths as needed.
 - If you have questions or need further customization, please refer to the script comments or contact the project author.
 
 ---

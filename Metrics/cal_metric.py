@@ -1,6 +1,5 @@
 from multiprocessing import Pool
 import sys
-sys.path.append("/home/lianhy/ScaffoldGVAE-master")
 from utils import mapper, valid_smiles, read_smiles_csv, get_mol, canonic_smiles, compute_scaffolds, fingerprints, calc_self_tanimoto, side_no_sca_change, mol_passes_filters
 import argparse
 import pandas as pd
@@ -321,19 +320,19 @@ def main(args):
 
 def get_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--train_path',default="/home/lianhy/ScaffoldGVAE-master/RDKit_filtered_scaffold_output.csv",type=str, required=False,help='Path to train molecules csv')
-    parser.add_argument('--ref_smiles', default="/home/lianhy/ScaffoldGVAE-master/pdb_output.smi", type=str,
+    parser.add_argument('--train_path',default="/ScaffoldInvent/RDKit_filtered_scaffold_output.csv",type=str, required=False,help='Path to train molecules csv')
+    parser.add_argument('--ref_smiles', default="/ScaffoldInvent/pdb_output.smi", type=str,
                         required=False, help='Path to train molecules csv')
     parser.add_argument('--fine_tune_path', default=None, type=str, required=False,help='Path to fine molecules csv')
-    parser.add_argument('--gen_path',default='/home/lianhy/ScaffoldGVAE-master/data/lianhy/sample_pdb_tmp.csv',type=str, required=False,help='Path to generated molecules csv')
-    parser.add_argument('--output',default='/home/lianhy/ScaffoldGVAE-master/data/lianhy/pdb_metrics.csv',type=str, required=False,help='Path to save results csv')
+    parser.add_argument('--gen_path',default='/ScaffoldInvent/data/lianhy/sample_pdb_tmp.csv',type=str, required=False,help='Path to generated molecules csv')
+    parser.add_argument('--output',default='/ScaffoldInvent/data/lianhy/pdb_metrics.csv',type=str, required=False,help='Path to save results csv')
     parser.add_argument('--print_metrics', action='store_true', default=True,help="Print results of metrics or not? [Default: False]")
     parser.add_argument('--n_jobs',type=int, default=20,help='Number of processes to run metrics')
     parser.add_argument('--device',type=str, default='cuda:0',help='GPU device id (`cpu` or `cuda:n`)')
     return parser
 
 if __name__ == '__main__':
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     parser = get_parser()
     args = parser.parse_args()

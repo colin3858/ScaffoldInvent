@@ -19,11 +19,10 @@ import numpy as np
 # Argument parser
 parser = argparse.ArgumentParser(description='Neural message passing and rnn')
 # parser.add_argument('--datasetPath', default='./data/lianhy/example_1.smi', help='dataset path')
-# /gpfs/hpc/home/caodongsh/zhouyiling/scaffoldgvae/data/parp1/parp1_candidates_test.smi
 parser.add_argument('--datasetPath', default='./data/parp1/parp1_new.smi', help='dataset path')
-# /home/lianhy/ScaffoldGVAE-master/data/Voc_merged_chembl_all
-# /home/lianhy/ScaffoldGVAE-master/data/Voc_chembl_all
-# /home/lianhy/ScaffoldGVAE-master/model/model_pretrain_attention.ckpt
+# /ScaffoldInvent/data/Voc_merged_chembl_all
+# /ScaffoldInvent/data/Voc_chembl_all
+# /ScaffoldInvent/model/model_pretrain_attention.ckpt
 parser.add_argument('--vocPath', default='./data/Voc_merged_chembl_all', help='voc path')
 parser.add_argument('--modelPath', default='./models/parp1.ckpt', help='model path')
 parser.add_argument('--save_dir', default='./data/parp1/parp1_sample_5k_9.csv', help='save sample path')
@@ -182,6 +181,6 @@ def main(args):
     # return molecules_total
 
 if __name__ == "__main__":
-    new_directory = "/gpfs/hpc/home/caodongsh/zhouyiling/scaffoldgvae"
+    new_directory = "/ScaffoldInvent"
     os.chdir(new_directory)
     main(args)

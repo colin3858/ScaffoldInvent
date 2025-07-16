@@ -111,7 +111,7 @@ def write_smiles_to_file(smiles_list, fname):
 
 if __name__ == "__main__":
     import os
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/home/lianhy/ScaffoldInvent-master/"
     os.chdir(new_directory)
     data_path = "D:\Python\ProjectOne\data\data.txt"
     voc_chars , max_len = construct_vocabulary(data_path)

@@ -429,7 +429,7 @@ class DMPN(nn.Module):
 
 if __name__ == "__main__":
     import os
-    new_directory = "/home/lianhy/ScaffoldGVAE-master/"
+    new_directory = "/ScaffoldInvent/"
     os.chdir(new_directory)
     print("")
 
